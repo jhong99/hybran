@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turing Intelligence Investor Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFBFA;
+            color: #4C4842;
+            overscroll-behavior: none;
+        }
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            padding: 4rem 2rem 6rem;
+            position: relative;
+            border-bottom: 1px solid #EAE5E0;
+            overflow: hidden; /* Prevent glow from overflowing */
+        }
+        .slide:last-child {
+            border-bottom: none;
+        }
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 50;
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #DCD7D1;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-dot.active {
+            background-color: #8C6F58;
+            transform: scale(1.25);
+        }
+        .accent-text {
+            color: #B5947C;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .fade-in-delay-4 { animation-delay: 0.8s; }
+        .fade-in-delay-5 { animation-delay: 1.0s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: #A8A29E;
+        }
+
+        /* Product Evolution Timeline Styles */
+        .evolution-item { display: flex; align-items: flex-start; gap: 1.5rem; }
+        .evolution-year-col { display: flex; flex-direction: column; align-items: center; }
+        .evolution-year { width: 60px; height: 40px; border: 2px solid #4C4842; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #4C4842; }
+        .evolution-line { width: 2px; flex-grow: 1; background-color: #DED3C9; }
+        .evolution-content { background-color: #F9F5F1; padding: 1.5rem; border-radius: 0.75rem; flex: 1; }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Dots -->
+    <div id="nav-dots" class="nav-dots hidden md:flex"></div>
+
+    <main style="scroll-snap-type: y mandatory;">
+        <!-- Slide 1: Title & Vision -->
+        <section id="slide-1" class="slide text-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="fade-in">
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Building the AI-Powered Second Brain</h1>
+                    <br>
+                    <p class="mt-3 text-xl md:text-2xl text-stone-500">Turing Intelligence LLC</p>
+                    <br>
+                    <div class="mt-24 flex justify-center items-center gap-8 md:gap-12">
+                        <div class="text-center">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/75/45/c4/7545c4cf-e7b3-5518-b17f-2967e891aa97/AppIcon-0-0-1x_U007emarketing-0-11-0-0-85-220.png/460x0w.webp" alt="AI Writer Logo" class="w-16 h-16 md:w-20 md:h-20 rounded-3xl shadow-lg mx-auto">
+                            <p class="mt-3 font-semibold">AI Writer</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/10/cc/51/10cc5192-0cc1-fd96-ea57-2d6a519b80dd/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/460x0w.webp" alt="HyNote Logo" class="w-16 h-16 md:w-20 md:h-20 rounded-3xl shadow-lg mx-auto">
+                            <p class="mt-3 font-semibold">HyNote</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://hybran.com/logo.png" alt="HyBran Logo" class="w-16 h-16 md:w-20 md:h-20 rounded-3xl shadow-lg mx-auto">
+                            <p class="mt-3 font-semibold">HyBran</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+        <!-- Slide 2: Product Evolution -->
+        <section id="slide-2" class="slide">
+            <div class="max-w-4xl w-full mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center fade-in">Product Evolution</h2>
+                <div class="mt-12 space-y-8">
+                    <div class="evolution-item fade-in-delay-1">
+                        <div class="evolution-year-col"><div class="evolution-year">2022</div><div class="evolution-line h-24"></div></div>
+                        <div class="evolution-content"><h3 class="font-bold text-lg">Early Adopter</h3><p class="mt-1 text-stone-600">Recognizing the emerging trend of AI and the potential of LLM, launched AI Writer in Aug. 2022—4 months before ChatGPT—establishing a strong first-mover advantage.</p></div>
+                    </div>
+                    <div class="evolution-item fade-in-delay-2">
+                        <div class="evolution-year-col"><div class="evolution-year">2023</div><div class="evolution-line h-28"></div></div>
+                        <div class="evolution-content"><h3 class="font-bold text-lg">Exploring AI Potentials</h3><p class="mt-1 text-stone-600">Developed 10+ apps, including AI Keyboard, AI Tutor, Soulmate AI, and xTwin, experimenting with AI use cases across productivity, social interaction, and companionship.</p></div>
+                    </div>
+                    <div class="evolution-item fade-in-delay-3">
+                        <div class="evolution-year-col"><div class="evolution-year">2024</div><div class="evolution-line h-24"></div></div>
+                        <div class="evolution-content"><h3 class="font-bold text-lg">Multimodal, Long Context</h3><p class="mt-1 text-stone-600">Google launched multimodal Gemini with a 1M-token context, we recognized its potential for note-taking and summarization, leading us to build AI Notebook (HyNote).</p></div>
+                    </div>
+                    <div class="evolution-item fade-in-delay-4">
+                        <div class="evolution-year-col"><div class="evolution-year">2025</div><div class="evolution-line h-24"></div></div>
+                        <div class="evolution-content"><h3 class="font-bold text-lg">Scaling & Hardware</h3><p class="mt-1 text-stone-600">Growing HyNote to 600K users with $2M in sales, and developing our first AI Hardware: HyBran Voice Recorder.</p></div>
+                    </div>
+                    <div class="evolution-item fade-in-delay-5">
+                        <div class="evolution-year-col"><div class="evolution-year">2026</div></div>
+                        <div class="evolution-content"><h3 class="font-bold text-lg">Personal Assistant & Agents</h3><p class="mt-1 text-stone-600">We will merge AI agents with hardware, delivering deeply personalized assistants that predict user needs and handle tasks autonomously.</p></div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+        <!-- Slide 3: The Productivity Powerhouse (HyNote) -->
+        <section id="slide-3" class="slide">
+            <div class="w-full mt-20">
+                <div class="text-center pt-12 pb-8">
+                    <h2 class="text-4xl sm:text-5xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">HyNote - Never Take Note Again</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">HyNote transforms chaotic meetings, scattered ideas, and endless documents into organized, actionable insights – all powered by AI.</p>
+                </div>
+                <div class="relative w-full mx-auto min-h-[600px] flex items-center justify-center px-4 py-8">
+                    <svg id="connecting-lines-svg" class="absolute inset-0 w-full h-full pointer-events-none z-0 "><defs><linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#eba908" stop-opacity="0.8"></stop><stop offset="50%" stop-color="#f5c842" stop-opacity="1"></stop><stop offset="100%" stop-color="#eba908" stop-opacity="0.8"></stop></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"></feGaussianBlur><feMerge><feMergeNode in="coloredBlur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>
+                        <path id="line-1" stroke="url(#glowGradient)" stroke-width="3" fill="none" stroke-dasharray="8,4" filter="url(#glow)" class="animate-pulse"></path>
+                        <path id="line-2" stroke="url(#glowGradient)" stroke-width="3" fill="none" stroke-dasharray="8,4" filter="url(#glow)" class="animate-pulse"></path>
+                        <path id="line-3" stroke="url(#glowGradient)" stroke-width="3" fill="none" stroke-dasharray="8,4" filter="url(#glow)" class="animate-pulse"></path>
+                        <path id="line-4" stroke="url(#glowGradient)" stroke-width="3" fill="none" stroke-dasharray="8,4" filter="url(#glow)" class="animate-pulse"></path>
+                    </svg>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center max-w-7xl w-full relative z-10 px-10">
+                        <div class="space-y-0">
+                            <div id="feature-box-1" class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 mb-6 mr-4">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4 text-center leading-tight">Transform Any Source into Actionable Insights</h3>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="audio" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/sound_10977590.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Audio</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="youtube" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/youtube_2585154.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">YouTube</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="images" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/images.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Images</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="text" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/TEXT.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Text</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="web" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/web.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Web</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="feature-box-2" class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 mb-6 mr-4">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4 text-center leading-tight">Save Hours with AI Summaries &amp; Workflow Templates</h3>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <div class="text-2xl mb-1">🧠</div>
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">AI</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="summary" class="w-6 h-6 mb-2" src="https://hynote.ai/images/appLogos/summary.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Summary</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <div class="text-2xl mb-1">📅</div>
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Calendar</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="tasks" class="w-6 h-6 mb-2" src="https://hynote.ai/images/appLogos/task.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Tasks</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hynote-logo-center" class="flex flex-col items-center justify-center">
+                            <div class="relative mb-6">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center relative ">
+                                    <img alt="HyNote" class="w-32 h-32 rounded-full" src="https://appstorex.s3.us-west-2.amazonaws.com/web/notebookai/static/logo_new.png">
+                                    <div class="absolute -top-2 -right-2 bg-green-500 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm shadow-lg"><img alt="secure" class="w-5 h-5" src="https://hynote.ai/images/landing/secure.svg"></div>
+                                    <div class="absolute -bottom-2 -left-2 bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm shadow-lg">📱</div>
+                                </div>
+                            </div>
+                            <div class="text-center"></div>
+                        </div>
+                        <div class="space-y-0">
+                            <div id="feature-box-3" class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 mb-6 ml-4">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4 text-center leading-tight"><span>Efficient teamwork through <br> smart sharing</span></h3>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="google-docs" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/google-docs.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Google Doc</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="notion" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/Notion-logo.webp">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Notion</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="google-drive" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/google-drive.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Google Drive</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="jira" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/jira.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Jira</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="onedrive" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/window.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">OneDrive</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="feature-box-4" class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 mb-6 ml-4">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4 text-center leading-tight"><span>Simple integrations for <br> smooth workflows</span></h3>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="google-calendar" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/google-calendar.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Google Calendar</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="google-meet" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/meet_5968552.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Google Meet</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="zoom" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/zambia_16316156.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Zoom</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="outlook" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/outlook_732223.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Outlook</div>
+                                    </div>
+                                    <div class="flex flex-col items-center p-2 bg-gray-50/80 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-200 hover:scale-105">
+                                        <img alt="teams" class="w-6 h-6 mb-1" src="https://hynote.ai/images/appLogos/Microsoft_Office_Teams_Logo_24px.png">
+                                        <div class="text-xs text-gray-700 font-medium text-center leading-tight">Teams</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+
+        <!-- Slide 4: HyBran -->
+        <section id="slide-4" class="slide">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold fade-in">HyBran — The Hybrid Brain</h2>
+                <p class="mt-6 max-w-3xl mx-auto text-xl text-stone-600 fade-in-delay-1">The intelligent bridge between the physical and digital worlds — seamlessly capturing information, transforming it into insight, and turning it into action.</p>
+                <img src="https://hybran.com/images/recorder/product-image.png" 
+                     alt="HyBran AI Recorder Device" 
+                     class="mt-12 w-full max-w-lg mx-auto fade-in-delay-2"
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/fdfbfa/4c4842?text=HyBran+Device';">
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+        <!-- Slide 5: Achievement & Metrics -->
+        <section id="slide-5" class="slide">
+            <div class="max-w-6xl w-full mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 fade-in">Achievement & Metrics</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- AI Writer -->
+                    <div class="fade-in-delay-1 bg-white/50 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-3xl font-bold mb-8">AI Writer</h3>
+                        <div class="space-y-6 text-left">
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">Total Users</p>
+                                <p class="text-3xl font-bold">663K</p>
+                            </div>
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">2025 H1 Users</p>
+                                <p class="text-3xl font-bold">61K</p>
+                            </div>
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">2025 H1 Sales</p>
+                                <p class="text-3xl font-bold">$421K</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HyNote -->
+                    <div class="fade-in-delay-2 bg-white/50 p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-3xl font-bold mb-8">HyNote (AI Notebook)</h3>
+                        <div class="space-y-6 text-left">
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">Total Users</p>
+                                <p class="text-3xl font-bold">596K</p>
+                            </div>
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">2025 H1 Users</p>
+                                <p class="text-3xl font-bold">411K</p>
+                            </div>
+                            <div class="bg-stone-100 p-4 rounded-lg">
+                                <p class="text-lg text-stone-600">2025 H1 Sales</p>
+                                <p class="text-3xl font-bold">$1,538K</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+        <!-- Slide 6: Fundraising -->
+        <section id="slide-6" class="slide">
+            <div class="max-w-7xl w-full mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-4 fade-in">Fundraising</h2>
+                <h3 class="text-2xl font-semibold text-stone-600 text-center mb-12 fade-in-delay-1">Raising $3 million USD to accelerate our next stage of growth</h3>
+                <div class="grid lg:grid-cols-3 gap-8 items-center">
+                    <!-- Marketing -->
+                    <div class="text-left fade-in-delay-2">
+                        <h4 class="font-bold text-xl mb-4">Marketing (50%)</h4>
+                        <div class="ml-4">
+                            <h5 class="font-semibold text-lg mb-2">User Acquisition:</h5>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1">
+                                <li>Expand paid advertising channels</li>
+                                <li>Explore influencer marketing partnerships</li>
+                                <li>Implement referral programs</li>
+                            </ul>
+                            <h5 class="font-semibold text-lg mt-4 mb-2">Brand Building:</h5>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1">
+                                <li>Create high-quality content</li>
+                                <li>Increase public relations/branding efforts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Chart -->
+                    <div class="fade-in-delay-1">
+                        <div class="relative mx-auto w-64 h-64">
+                            <canvas id="fundingChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Hardware & Team -->
+                    <div class="text-left fade-in-delay-3">
+                        <div class="mb-8">
+                            <h4 class="font-bold text-xl mb-4">Hardware & Infrastructure Cost (30%)</h4>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1 ml-4">
+                                <li>Build 1st hardware product</li>
+                                <li>Infrastructure Scalability: Server, Cloud & API cost</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-4">Team Expansion (20%)</h4>
+                            <div class="ml-4">
+                                <h5 class="font-semibold text-lg mb-2">Recruitment & Identify Key Roles:</h5>
+                                <p class="text-stone-600 mb-2">Determine the specific roles needed to support growth (e.g., ToB business team Leader, Hardware team Leader, Software & Operations team)</p>
+                                <h5 class="font-semibold text-lg mt-4 mb-2">Local Support:</h5>
+                                <ul class="list-disc list-inside text-stone-600 space-y-1">
+                                    <li>Set up office in USA</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+        <!-- Slide 7: Thank You -->
+        <section id="slide-7" class="slide text-center">
+            <div class="fade-in">
+                <h2 class="text-5xl md:text-6xl font-bold">Thank You</h2>
+                <p class="mt-8 text-xl md:text-2xl text-stone-600">If you have questions or are interested in investing, please contact:</p>
+                <a href="mailto:hong@hybran.com" class="mt-4 inline-block text-xl md:text-2xl font-semibold accent-text hover:underline">hong@hybran.com</a>
+            </div>
+             <footer class="slide-footer">
+                <span>HyNote.ai</span> | <span>HyBran.com</span>
+            </footer>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DYNAMIC SVG LINE LOGIC ---
+            function updateConnectingLines() {
+                const svg = document.getElementById('connecting-lines-svg');
+                if (!svg) return;
+
+                const centerEl = document.getElementById('hynote-logo-center');
+                const boxes = [
+                    document.getElementById('feature-box-1'),
+                    document.getElementById('feature-box-2'),
+                    document.getElementById('feature-box-3'),
+                    document.getElementById('feature-box-4')
+                ];
+                const lines = [
+                    document.getElementById('line-1'),
+                    document.getElementById('line-2'),
+                    document.getElementById('line-3'),
+                    document.getElementById('line-4')
+                ];
+
+                if (!centerEl || boxes.some(b => !b) || lines.some(l => !l)) {
+                    return;
+                }
+
+                const svgRect = svg.getBoundingClientRect();
+                
+                const getCenterCoords = (el) => {
+                    const elRect = el.getBoundingClientRect();
+                    const x = elRect.left + elRect.width / 2 - svgRect.left;
+                    const y = elRect.top + elRect.height / 2 - svgRect.top;
+                    return { x, y };
+                };
+
+                const center = getCenterCoords(centerEl);
+                
+                boxes.forEach((box, i) => {
+                    if (box && lines[i]) {
+                        const point = getCenterCoords(box);
+                        lines[i].setAttribute('d', `M ${center.x} ${center.y} L ${point.x} ${point.y}`);
+                    }
+                });
+            }
+
+            // Initial call and on resize
+            setTimeout(updateConnectingLines, 100); // A small delay to ensure layout is stable
+            window.addEventListener('resize', updateConnectingLines);
+
+
+            // --- SLIDE NAVIGATION LOGIC ---
+            const slides = document.querySelectorAll('.slide');
+            const navDotsContainer = document.getElementById('nav-dots');
+            if (slides.length === 0 || !navDotsContainer) return;
+
+            navDotsContainer.innerHTML = '';
+
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('a');
+                dot.classList.add('nav-dot');
+                dot.setAttribute('href', `#${slide.id}`);
+                dot.dataset.index = index;
+                navDotsContainer.appendChild(dot);
+            });
+
+            const navDots = document.querySelectorAll('.nav-dot');
+
+            const updateActiveDot = (index) => {
+                navDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            };
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+            
+            let chartRendered = false;
+            const fundingChartObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !chartRendered) {
+                        renderFundingChart();
+                        chartRendered = true;
+                    }
+                });
+            }, observerOptions);
+
+            const fundingSlide = document.getElementById('slide-6');
+            if(fundingSlide) {
+                fundingChartObserver.observe(fundingSlide);
+            }
+
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const slideId = entry.target.id;
+                        const slideIndex = Array.from(slides).findIndex(s => s.id === slideId);
+                        updateActiveDot(slideIndex);
+                        if (slideId === 'slide-3') {
+                            updateConnectingLines();
+                        }
+                        entry.target.querySelectorAll('.fade-in, [class*="fade-in-delay"]').forEach(el => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+
+            // --- CHART.JS LOGIC ---
+            function renderFundingChart() {
+                const ctx = document.getElementById('fundingChart').getContext('2d');
+                Chart.register(ChartDataLabels);
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Marketing', 'Hardware & Infrastructure', 'Team Expansion'],
+                        datasets: [{
+                            data: [50, 30, 20],
+                            backgroundColor: [
+                                '#D5BFA8', // Marketing 50%
+                                '#A88A72', // Hardware 30%
+                                '#4C4842'  // Team 20%
+                            ],
+                            borderColor: '#FDFBFA',
+                            borderWidth: 8,
+                            hoverBorderWidth: 10,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '60%',
+                        plugins: {
+                            datalabels: {
+                                color: '#ffffff',
+                                formatter: (value) => {
+                                    return value + '%';
+                                },
+                                font: {
+                                    weight: 'bold',
+                                    size: 20,
+                                    family: 'Plus Jakarta Sans'
+                                }
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true,
+                            duration: 1500
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+
