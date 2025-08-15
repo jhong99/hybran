@@ -366,7 +366,7 @@
                 <div class="grid lg:grid-cols-3 gap-8 items-center">
                     <!-- Marketing -->
                     <div class="text-left fade-in-delay-2">
-                        <h4 class="font-bold text-xl mb-4">Marking & Branding (50%)</h4>
+                        <h4 class="font-bold text-xl mb-4">Marketing & Branding (50%)</h4>
                         <div class="ml-4">
                             <h5 class="font-semibold text-lg mb-2">User Acquisition:</h5>
                             <ul class="list-disc list-inside text-stone-600 space-y-1">
@@ -551,7 +551,7 @@
                 new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Hardware & Infrastructure', 'Team Expansion', 'Marketing'],
+                        labels: ['Hardware & Infra Cost', 'Team Expansion', 'Marketing & Branding'],
                         datasets: [{
                             data: [30, 20, 50],
                             backgroundColor: [
@@ -585,7 +585,23 @@
                                 display: false
                             },
                             tooltip: {
-                                enabled: false
+                                enabled: true,
+                                displayColors: false,
+                                backgroundColor: function(context) {
+                                    return context.tooltip.labelColors[0].backgroundColor;
+                                },
+                                bodyFont: {
+                                    size: 16,
+                                    family: 'Plus Jakarta Sans'
+                                },
+                                callbacks: {
+                                    title: function() {
+                                        return ''; // Return an empty string to hide the title
+                                    },
+                                    label: function(context) {
+                                        return context.label;
+                                    }
+                                }
                             }
                         },
                         animation: {
